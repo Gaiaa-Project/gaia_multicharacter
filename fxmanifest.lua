@@ -29,9 +29,13 @@ client_scripts {
 
 ui_page 'web/dist/index.html'
 
+loadscreen 'web/dist/loading.html'
+loadscreen_manual_shutdown 'yes'
+
 files {
     'translations/*.lua',
     'web/dist/index.html',
+    'web/dist/loading.html',
     'web/dist/**/*.js',
     'web/dist/**/*.css',
     'web/dist/assets/**/*.*',
