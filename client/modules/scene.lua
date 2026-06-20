@@ -10,8 +10,9 @@ local function setDefaultClothes(ped)
     end
 end
 
---- Build the hidden scene (model, position, camera) behind a fade, then fade
---- back in. Shared by both the selection and creation entry points.
+--- Build the hidden scene (model, position, camera) behind a black fade.
+--- The screen stays faded out on purpose — call RevealCharacterScene only
+--- after the NUI is opened so the interface is already present on reveal.
 function SetupCharacterScene()
     DoScreenFadeOut(500)
     while not IsScreenFadedOut() do
@@ -50,7 +51,11 @@ function SetupCharacterScene()
 
     ShutdownLoadingScreen()
     ShutdownLoadingScreenNui()
+end
 
+--- Fade the prepared scene back in. Call after the NUI has been opened so the
+--- interface is already visible the moment the screen appears.
+function RevealCharacterScene()
     DoScreenFadeIn(500)
     while not IsScreenFadedIn() do
         Wait(100)

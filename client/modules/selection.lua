@@ -23,6 +23,8 @@ local function prepareCharacterSelection()
     local characters <const> = Gaia.TriggerServerCallback('gaia_multicharacter:callback:getCharacters')
 
     openCharacterSelect(characters or {})
+
+    RevealCharacterScene()
 end
 
 RegisterNetEvent('gaia_multicharacter:client:prepareCharacterSelect', function()

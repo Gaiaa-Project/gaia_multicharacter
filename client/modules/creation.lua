@@ -12,6 +12,8 @@ local function prepareCharacterCreation()
     SetupCharacterScene()
 
     openCharacterCreation()
+
+    RevealCharacterScene()
 end
 
 RegisterNetEvent('gaia_multicharacter:client:prepareCharacterCreation', function()
