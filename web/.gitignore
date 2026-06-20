@@ -1,0 +1,5 @@
+# Ne versionner que le build (web/dist) pour cette ressource.
+# Tout le source web reste en local mais hors du depot.
+/*
+!/.gitignore
+!/dist/
