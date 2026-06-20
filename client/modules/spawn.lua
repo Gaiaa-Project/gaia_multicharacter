@@ -46,6 +46,10 @@ local function prepareCharacterSelection()
 
     CreateSelectionCamera(playerPed, vector3(0.0, 1.5, 0.4), 1000)
 
+    while not NetworkIsSessionStarted() do
+        Wait(50)
+    end
+
     ShutdownLoadingScreen()
     ShutdownLoadingScreenNui()
 
