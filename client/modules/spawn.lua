@@ -34,14 +34,14 @@ end
 local function prepareCharacterSelection()
     DoScreenFadeOut(500)
     while not IsScreenFadedOut() do
-        Wait(50)
+        Wait(100)
     end
 
     local modelHash <const> = GetHashKey('mp_m_freemode_01')
 
     RequestModel(modelHash)
     while not HasModelLoaded(modelHash) do
-        Wait(50)
+        Wait(100)
     end
 
     SetPlayerModel(PlayerId(), modelHash)
@@ -51,35 +51,33 @@ local function prepareCharacterSelection()
     local spawnCoords <const> = SpawnConfig.selectionSpawn
 
     setDefaultClothes(playerPed)
-
-    SetEntityCoords(playerPed, spawnCoords.x, spawnCoords.y, spawnCoords.z, false, false, false, true)
-    SetEntityHeading(playerPed, spawnCoords.w)
-    FreezeEntityPosition(playerPed, true)
-    SetPlayerControl(PlayerId(), false, 0)
+    Wait(100)
 
     ResetEntityAlpha(playerPed)
     SetEntityVisible(playerPed, true, false)
     SetPedAoBlobRendering(playerPed, true)
     SetEntityCollision(playerPed, true, true)
 
-    CreateSelectionCamera(playerPed, vector3(0.0, 1.5, 0.4), 0)
+    SetEntityCoords(playerPed, spawnCoords.x, spawnCoords.y, spawnCoords.z, false, false, false, true)
+    SetEntityHeading(playerPed, spawnCoords.w)
+    FreezeEntityPosition(playerPed, true)
+    SetPlayerControl(PlayerId(), false, 0)
 
-    while not NetworkIsSessionStarted() do
-        Wait(50)
-    end
+    Wait(500)
+
+    CreateSelectionCamera(playerPed, vector3(0.0, 1.5, 0.4), 1000)
 
     ShutdownLoadingScreen()
     ShutdownLoadingScreenNui()
 
-    Wait(500)
+    DoScreenFadeIn(500)
+    while not IsScreenFadedIn() do
+        Wait(100)
+    end
 
     local characters <const> = Gaia.TriggerServerCallback('gaia_multicharacter:callback:getCharacters')
 
     openCharacterSelect(characters or {})
-
-    Wait(200)
-
-    DoScreenFadeIn(800)
 end
 
 RegisterNetEvent('gaia_multicharacter:client:prepareCharacterSelect', function()
