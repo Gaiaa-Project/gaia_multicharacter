@@ -10,28 +10,9 @@ local function setDefaultClothes(ped)
     end
 end
 
---- Show the character selection NUI and give it focus (mouse + keyboard).
----@param characters table The formatted character data to display.
-local function openCharacterSelect(characters)
-    SetNuiFocus(true, true)
-    SendNUIMessage({
-        action = 'open',
-        characters = characters,
-    })
-end
-
---- Hide the character selection NUI and release focus.
-local function closeCharacterSelect()
-    SetNuiFocus(false, false)
-    SendNUIMessage({
-        action = 'close',
-    })
-end
-
---- Prepare the player for the character selection screen.
---- Fades out, sets up the hidden scene (model, position, camera), then fades
---- back in with the interface already visible for a seamless transition.
-local function prepareCharacterSelection()
+--- Build the hidden scene (model, position, camera) behind a fade, then fade
+--- back in. Shared by both the selection and creation entry points.
+function SetupCharacterScene()
     DoScreenFadeOut(500)
     while not IsScreenFadedOut() do
         Wait(100)
@@ -74,25 +55,4 @@ local function prepareCharacterSelection()
     while not IsScreenFadedIn() do
         Wait(100)
     end
-
-    local characters <const> = Gaia.TriggerServerCallback('gaia_multicharacter:callback:getCharacters')
-
-    openCharacterSelect(characters or {})
 end
-
-RegisterNetEvent('gaia_multicharacter:client:prepareCharacterSelect', function()
-    prepareCharacterSelection()
-end)
-
-RegisterNUICallback('gaia_multicharacter:nui:close', function(_, cb)
-    closeCharacterSelect()
-    cb({ ok = true })
-end)
-
-CreateThread(function()
-    while not NetworkIsPlayerActive(PlayerId()) do
-        Wait(100)
-    end
-
-    TriggerServerEvent('gaia_multicharacter:server:checkPlayerData')
-end)

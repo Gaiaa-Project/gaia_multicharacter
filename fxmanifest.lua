@@ -17,14 +17,17 @@ shared_scripts {
 
 server_scripts {
     '@oxmysql/lib/MySQL.lua',
-    'server/modules/spawn.lua',
+    'server/modules/user.lua',
     'server/modules/characters.lua',
     'server/init.lua',
 }
 
 client_scripts {
     'client/modules/camera.lua',
-    'client/modules/spawn.lua',
+    'client/modules/scene.lua',
+    'client/modules/selection.lua',
+    'client/modules/creation.lua',
+    'client/main.lua',
 }
 
 ui_page 'web/dist/index.html'
