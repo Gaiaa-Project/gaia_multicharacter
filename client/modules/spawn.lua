@@ -37,13 +37,6 @@ local function prepareCharacterSelection()
         Wait(50)
     end
 
-    while not NetworkIsSessionStarted() do
-        Wait(50)
-    end
-
-    ShutdownLoadingScreen()
-    ShutdownLoadingScreenNui()
-
     local modelHash <const> = GetHashKey('mp_m_freemode_01')
 
     RequestModel(modelHash)
@@ -71,16 +64,14 @@ local function prepareCharacterSelection()
 
     CreateSelectionCamera(playerPed, vector3(0.0, 1.5, 0.4), 0)
 
-    NewLoadSceneStart(
-        spawnCoords.x, spawnCoords.y, spawnCoords.z,
-        spawnCoords.x, spawnCoords.y, spawnCoords.z,
-        50.0, 0
-    )
-    local timeout <const> = GetGameTimer() + 5000
-    while IsNewLoadSceneActive() and GetGameTimer() < timeout do
-        Wait(0)
+    while not NetworkIsSessionStarted() do
+        Wait(50)
     end
-    NewLoadSceneStop()
+
+    ShutdownLoadingScreen()
+    ShutdownLoadingScreenNui()
+
+    Wait(500)
 
     local characters <const> = Gaia.TriggerServerCallback('gaia_multicharacter:callback:getCharacters')
 
