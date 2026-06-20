@@ -3,7 +3,7 @@
 ---@param sessionId number The player's server ID.
 ---@param userId number The user's database ID.
 ---@param identifiers PlayerIdentifiers The player's identifiers.
-function ok(sessionId, userId, identifiers)
+function RetrieveUser(sessionId, userId, identifiers)
     local userData <const> = MySQL.single.await('SELECT * FROM users WHERE id = ?', { userId })
 
     if not userData then
