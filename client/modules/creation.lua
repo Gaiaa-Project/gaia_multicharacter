@@ -9,6 +9,10 @@ local function openCharacterCreation()
             basics = PedsConfig.pedList.basics,
             peds = PedsConfig.pedList.peds,
         },
+        heritage = {
+            fathers = HeritageConfig.fathers,
+            mothers = HeritageConfig.mothers,
+        },
     })
 end
 

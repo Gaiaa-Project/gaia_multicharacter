@@ -144,9 +144,28 @@ function ApplyCreatorPed(model)
     CreateSelectionCamera(ped, CREATOR_CAMERA_OFFSET, 800)
 end
 
+--- Apply heritage (parents + resemblance) to the current ped.
+---@param father number The father heritage id.
+---@param mother number The mother heritage id.
+---@param faceBlend number Shape mix, 0.0 = father, 1.0 = mother.
+---@param skinBlend number Skin mix, 0.0 = father, 1.0 = mother.
+function ApplyHeritage(father, mother, faceBlend, skinBlend)
+    local ped <const> = PlayerPedId()
+
+    SetPedHeadBlendData(ped, father, mother, 0, father, mother, 0, faceBlend + 0.0, skinBlend + 0.0, 0.0, false)
+end
+
 RegisterNUICallback('gaia_multicharacter:nui:setPedModel', function(data, cb)
     if data and data.model then
         ApplyCreatorPed(data.model)
+    end
+
+    cb({ ok = true })
+end)
+
+RegisterNUICallback('gaia_multicharacter:nui:applyHeritage', function(data, cb)
+    if data then
+        ApplyHeritage(data.father or 0, data.mother or 21, data.faceBlend or 0.5, data.skinBlend or 0.5)
     end
 
     cb({ ok = true })
