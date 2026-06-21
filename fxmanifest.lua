@@ -25,6 +25,7 @@ server_scripts {
 client_scripts {
     'client/modules/camera.lua',
     'client/modules/scene.lua',
+    'client/modules/appearance.lua',
     'client/modules/selection.lua',
     'client/modules/creation.lua',
     'client/main.lua',
