@@ -170,3 +170,49 @@ RegisterNUICallback('gaia_multicharacter:nui:applyHeritage', function(data, cb)
 
     cb({ ok = true })
 end)
+
+RegisterNUICallback('gaia_multicharacter:nui:setFaceFeature', function(data, cb)
+    if data and data.index then
+        SetPedFaceFeature(PlayerPedId(), data.index, (data.value or 0.0) + 0.0)
+    end
+
+    cb({ ok = true })
+end)
+
+RegisterNUICallback('gaia_multicharacter:nui:setHair', function(data, cb)
+    if data then
+        SetPedComponentVariation(PlayerPedId(), 2, data.style or 0, 0, 0)
+    end
+
+    cb({ ok = true })
+end)
+
+RegisterNUICallback('gaia_multicharacter:nui:setHairColor', function(data, cb)
+    if data then
+        SetPedHairTint(PlayerPedId(), data.color or 0, data.highlight or data.color or 0)
+    end
+
+    cb({ ok = true })
+end)
+
+RegisterNUICallback('gaia_multicharacter:nui:setEyeColor', function(data, cb)
+    if data then
+        SetPedEyeColor(PlayerPedId(), data.color or 0)
+    end
+
+    cb({ ok = true })
+end)
+
+RegisterNUICallback('gaia_multicharacter:nui:setHeadOverlay', function(data, cb)
+    if data and data.overlay then
+        local ped <const> = PlayerPedId()
+
+        SetPedHeadOverlay(ped, data.overlay, data.style or 0, (data.opacity or 0.0) + 0.0)
+
+        if data.colorType and data.colorType > 0 then
+            SetPedHeadOverlayColor(ped, data.overlay, data.colorType, data.color or 0, data.highlight or 0)
+        end
+    end
+
+    cb({ ok = true })
+end)
