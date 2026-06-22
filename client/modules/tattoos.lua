@@ -1,8 +1,6 @@
 local ZONE_CONFIG <const> = {
     head = 'ZONE_HEAD',
-    neck = 'ZONE_HEAD',
     torso = 'ZONE_TORSO',
-    back = 'ZONE_TORSO',
     leftArm = 'ZONE_LEFT_ARM',
     rightArm = 'ZONE_RIGHT_ARM',
     leftLeg = 'ZONE_LEFT_LEG',

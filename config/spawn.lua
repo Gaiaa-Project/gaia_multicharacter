@@ -28,6 +28,12 @@ SpawnConfig = {
     --- • false: Only "Play Character" button appears for existing characters
     playerCanDeleteCharacter = true,
 
+    --- Allow choosing a bullet-proof vest in the character creator.
+    ---
+    --- • false (default): the "Gilet par balle" category is hidden entirely
+    --- • true: players can pick a body armor during creation
+    enableBodyArmor = false,
+
     --- Character selection spawn position.
     ---
     --- Where the ped is placed during the character selection screen.

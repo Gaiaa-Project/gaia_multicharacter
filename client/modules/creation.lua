@@ -13,6 +13,7 @@ local function openCharacterCreation()
             fathers = HeritageConfig.fathers,
             mothers = HeritageConfig.mothers,
         },
+        enableBodyArmor = SpawnConfig.enableBodyArmor,
     })
 end
 
