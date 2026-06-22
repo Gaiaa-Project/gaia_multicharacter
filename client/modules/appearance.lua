@@ -141,6 +141,10 @@ function ApplyCreatorPed(model)
         ApplyDefaultAppearance(ped, gender)
     end
 
+    if ResetTattooState then
+        ResetTattooState()
+    end
+
     CreateSelectionCamera(ped, CREATOR_CAMERA_OFFSET, 800)
 end
 

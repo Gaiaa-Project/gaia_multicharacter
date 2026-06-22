@@ -24,8 +24,12 @@ server_scripts {
 
 client_scripts {
     'client/modules/camera.lua',
+    'client/modules/cameraControls.lua',
     'client/modules/scene.lua',
     'client/modules/appearance.lua',
+    'client/modules/clothing.lua',
+    'client/modules/accessories.lua',
+    'client/modules/tattoos.lua',
     'client/modules/selection.lua',
     'client/modules/creation.lua',
     'client/main.lua',
